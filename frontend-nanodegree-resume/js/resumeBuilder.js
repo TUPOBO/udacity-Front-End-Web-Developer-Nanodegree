@@ -42,8 +42,7 @@ var bio = {
         }
 
         formattedContact.forEach(function(contact) {
-            $("#topContacts").append(contact);
-            $("#footerContacts").append(contact);
+            $("#topContacts, #footerContacts").append(contact);
         });
     }
 
@@ -62,13 +61,7 @@ var work = {
     display: function() {
         work.jobs.forEach(function(job) {
             $("#workExperience").append(HTMLworkStart);
-            $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", job.employer) + HTMLworkTitle.replace("%data%", job.title));
-            $(".work-entry:last").append(HTMLworkLocation.replace("%data%", job.location));
-            $(".work-entry:last").append(HTMLworkDates.replace("%data%", job.dates));
-            $(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
-
-
-
+            $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", job.employer) + HTMLworkTitle.replace("%data%", job.title), HTMLworkLocation.replace("%data%", job.location), HTMLworkDates.replace("%data%", job.dates), HTMLworkDescription.replace("%data%", job.description));
         })
     }
 };
@@ -85,8 +78,7 @@ var projects = {
     display: function() {
         projects.projects.forEach(function(project) {
             $("#projects").append(HTMLprojectStart);
-            $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", project.title));
-            $(".project-entry:last").append(HTMLprojectDates.replace("%data%", project.dates) + HTMLprojectDescription.replace("%data%", project.description));
+            $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", project.title), HTMLprojectDates.replace("%data%", project.dates) + HTMLprojectDescription.replace("%data%", project.description));
 
             if (project.images.length > 0) {
                 project.images.forEach(function(image) {
@@ -104,7 +96,7 @@ var education = {
         name: "HuaiHai Institute of Technology",
         location: "Lianyungang China",
         degree: "bachelor",
-        mahors: "automation",
+        majors: ["automation"],
         dates: "2010-2014",
         url: "http://www.hhit.edu.cn/"
     }],
@@ -119,18 +111,13 @@ var education = {
     display: function() {
         education.schools.forEach(function(school) {
             $("#education").append(HTMLschoolStart);
-            $(".education-entry:last").append(HTMLschoolName.replace("%data%", school.name) + HTMLschoolDegree.replace("%data%", school.degree));
-            $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", school.location));
-            $(".education-entry:last").append(HTMLschoolDates.replace("%data%", school.dates));
-            $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", school.mahors));
+            $(".education-entry:last").append(HTMLschoolName.replace("%data%", school.name).replace("#",school.url) + HTMLschoolDegree.replace("%data%", school.degree), HTMLschoolLocation.replace("%data%", school.location), HTMLschoolDates.replace("%data%", school.dates), HTMLschoolMajor.replace("%data%", school.majors));
         })
         
         education.onlineCourses.forEach(function(course) {
             $("#education").append(HTMLonlineClasses);
             $("#education").append(HTMLschoolStart);
-            $(".education-entry:last").append(HTMLonlineTitle.replace("%data%", course.title) + HTMLonlineSchool.replace("%data%", course.school));
-            $(".education-entry:last").append(HTMLonlineDates.replace("%data%", course.dates));
-            $(".education-entry:last").append(HTMLonlineURL.replace("%data%", course.url).replace("#", course.url));
+            $(".education-entry:last").append(HTMLonlineTitle.replace("%data%", course.title) + HTMLonlineSchool.replace("%data%", course.school), HTMLonlineDates.replace("%data%", course.dates), HTMLonlineURL.replace("%data%", course.url).replace("#", course.url));
         })
 
 
